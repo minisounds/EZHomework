@@ -1,5 +1,7 @@
-# Study<span style="color: #f1c40f">Finder</span>
+# StudyFinder
 Created for The (Hackathon) by Jacob Ismael, Jason Zhang, Aiden Shiu, Saarang Bondalapati, and Brayden Snedigar 
+
+<button>Test</button>
 
 <hr>
   
