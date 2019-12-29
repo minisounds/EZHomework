@@ -1,2 +1,2 @@
-# EZHomework
+# StudyFinder
 Hackathon
