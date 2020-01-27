@@ -1,5 +1,5 @@
 # StudyFinder
-Created for The (Hackathon) by Jacob Ismael, Jason Zhang, Aiden Shiu, Saarang Bondalapati, and Brayden Snedigar 
+Created for The (Hackathon) by Jacob Ismael, Jason Zhang, Aiden Shiu, Saarang Bondalapati, and Vlad Korneev
 
 <hr>
   
