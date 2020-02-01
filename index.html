@@ -132,6 +132,9 @@
 
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
+
+  var courses = {};
+
   /**
    * Sample JavaScript code for classroom.courses.list
    * See instructions for running APIs Explorer code samples locally:
@@ -145,7 +148,7 @@
               function(err) { console.error("Error signing in", err); });
   }
   function loadClient() {
-    gapi.client.setApiKey("AIzaSyBWeLFjHrNSEdLvYhRgYxIuQJXWYtFXJoE");
+    gapi.client.setApiKey("AIzaSyBdvjTZwzGbTeRcPeqbxPgRnT5-89T2AGg");
     return gapi.client.load("1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
@@ -156,16 +159,49 @@
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
+                courses = response;
+                getCourses();
               },
               function(err) { console.error("Execute error", err); });
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com"});
   });
+
+  function getCourses() {
+    console.log("returned Courses");
+    var courseList = new Array();
+    for(i = 0; i < 8; i++) {
+      courseList.push(courses.result.courses[i]);
+      document.getElementById("class"+(i+1)).innerHTML = courseList[i].name;
+      getCourseWork(courseList[i].id);
+    }
+  }
+
+  function getCourseWork(id) {
+    return gapi.client.classroom.courses.courseWork.list({
+      "courseId": id
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
 
-
+  <ul style="list-style-type: none;">
+    <li id="class1"></li>
+    <li id="class2"></li>
+    <li id="class3"></li>
+    <li id="class4"></li>
+    <li id="class5"></li>
+    <li id="class6"></li>
+    <li id="class7"></li>
+    <li id="class8"></li>
+  </ul>
   </body>
 </html>
