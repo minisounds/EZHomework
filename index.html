@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <p>Classroom API Quickstart</p>
+    <h1 style="font-size: 20px; font-family: monospace; font-weight: lighter;">Classroom API Quickstart</h1>
 
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
@@ -16,7 +16,7 @@
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '384049678839-t7hegl3uf1vkmm207odgcpa1bjt5dlej.apps.googleusercontent.com';
+      var CLIENT_ID = '1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyBWeLFjHrNSEdLvYhRgYxIuQJXWYtFXJoE';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
@@ -122,11 +122,50 @@
         });
       }
 
+
     </script>
 
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+  /**
+   * Sample JavaScript code for classroom.courses.list
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/guides/code_samples#javascript
+   */
+
+  function authenticate() {
+    return gapi.auth2.getAuthInstance()
+        .signIn({scope: "https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.courses.readonly"})
+        .then(function() { console.log("Sign-in successful"); },
+              function(err) { console.error("Error signing in", err); });
+  }
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyBWeLFjHrNSEdLvYhRgYxIuQJXWYtFXJoE");
+    return gapi.client.load("1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function execute() {
+    return gapi.client.classroom.courses.list({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com"});
+  });
+</script>
+<button onclick="authenticate().then(loadClient)">authorize and load</button>
+<button onclick="execute()">execute</button>
+
+
   </body>
 </html>
