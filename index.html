@@ -16,15 +16,15 @@
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyBWeLFjHrNSEdLvYhRgYxIuQJXWYtFXJoE';
+      var CLIENT_ID = '36403631458-78b24b82hp3gpihfem51jcdadilku1c8.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyB2ynQ_Zy4KC3k2u_A_GV0qNi0TVD-oRP0';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/classroom/v1/rest"];
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/classroom.courses.readonly";
+      var SCOPES = "https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.coursework.me https://www.googleapis.com/auth/classroom.coursework.me.readonly https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.coursework.students.readonly https://www.googleapis.com/auth/classroom.coursework.students ";
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
@@ -143,13 +143,13 @@
 
   function authenticate() {
     return gapi.auth2.getAuthInstance()
-        .signIn({scope: "https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.courses.readonly"})
+        .signIn({scope: SCOPES})
         .then(function() { console.log("Sign-in successful"); },
               function(err) { console.error("Error signing in", err); });
   }
   function loadClient() {
-    gapi.client.setApiKey("AIzaSyBdvjTZwzGbTeRcPeqbxPgRnT5-89T2AGg");
-    return gapi.client.load("1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com")
+    gapi.client.setApiKey("AIzaSyB2ynQ_Zy4KC3k2u_A_GV0qNi0TVD-oRP0");
+    return gapi.client.load("36403631458-78b24b82hp3gpihfem51jcdadilku1c8.apps.googleusercontent.com")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
@@ -165,7 +165,7 @@
               function(err) { console.error("Execute error", err); });
   }
   gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "1087743140862-k7984ob52mso6cbedpegdfeavbkr2osi.apps.googleusercontent.com"});
+    gapi.auth2.init({client_id: "36403631458-78b24b82hp3gpihfem51jcdadilku1c8.apps.googleusercontent.com"});
   });
 
   function getCourses() {
